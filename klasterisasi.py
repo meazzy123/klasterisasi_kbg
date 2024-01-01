@@ -14,7 +14,7 @@ def intro():
     st.markdown(
         """
         <div style="text-align: center; background-color: #3498db; padding: 20px; border-radius: 10px;">
-            <h2 style="color: #fff;">Klasterisasi Kejahatan Berbasis Gender Terhadap Perempuan</h2>
+            <h2 style="color: #fff;">Klasterisasi Kejahatan Berbasis Gender Terhadap Perempuan di Indonesia</h2>
         </div>
         """,
         unsafe_allow_html=True,
