@@ -410,7 +410,7 @@ def show_scatter_plot(dataset, predicted_cluster, input_data, nama_provinsi, clu
         {
             "Cluster": [predicted_cluster],
             "Total KBG Perempuan": [sum(input_data)],
-            "Provinsi": ["Prediksi"],
+            "Provinsi": [nama_provinsi],
         }
     )
     df_plotly = pd.concat([df_plotly, df_prediksi], ignore_index=True)
