@@ -77,29 +77,75 @@ def tahun2022():
     # st.header("Hasil Scaling")
     # st.write(x_train21)
 
-    inertias = []
-    k_range = range(1, 10)
+    # inertias = []
+    k_range = range(2, 11)
+    # for k in k_range:
+    #     km = KMeans(n_clusters=k).fit(x_train22)
+    #     inertias.append(km.inertia_)
+
+    # # Membuat dataframe untuk Plotly
+    # df_elbow = pd.DataFrame({"Number of Clusters": k_range, "Inertia": inertias})
+
+    # # Membuat plot interaktif dengan Plotly
+    # fig = px.line(
+    #     df_elbow,
+    #     x="Number of Clusters",
+    #     y="Inertia",
+    #     markers=True,
+    #     title="Elbow Method For Optimal k",
+    #     labels={"Inertia": "Sum of squared distances (Inertia)"},
+    # )
+
+    # # Menampilkan plot
+    # st.plotly_chart(fig)
+
+    dbi_scores = []
+    optimal_k = None
+    optimal_dbi = float("inf")
+
     for k in k_range:
-        km = KMeans(n_clusters=k).fit(x_train22)
-        inertias.append(km.inertia_)
+        kmeans = KMeans(n_clusters=k)
+        y_cluster22 = kmeans.fit_predict(x_train22)
+        data22["Cluster"] = y_cluster22
+
+        # Menghitung Davies-Bouldin Index
+        dbi = davies_bouldin_score(x_train22, y_cluster22)
+        dbi_scores.append(dbi)
+
+        # Memilih nilai K yang memiliki DBI terendah sebagai optimal
+        if dbi < optimal_dbi:
+            optimal_dbi = dbi
+            optimal_k = k
 
     # Membuat dataframe untuk Plotly
-    df_elbow = pd.DataFrame({"Number of Clusters": k_range, "Inertia": inertias})
+    df_dbi = pd.DataFrame({"Number of Clusters": k_range, "DBI": dbi_scores})
 
     # Membuat plot interaktif dengan Plotly
-    fig = px.line(
-        df_elbow,
+    fig_dbi = px.line(
+        df_dbi,
         x="Number of Clusters",
-        y="Inertia",
+        y="DBI",
         markers=True,
-        title="Elbow Method For Optimal k",
-        labels={"Inertia": "Sum of squared distances (Inertia)"},
+        title="Davies-Bouldin Index For Optimal K",
+        labels={"DBI": "Davies-Bouldin Index"},
+    )
+
+    # Menampilkan nilai K yang optimal di dalam plot
+    fig_dbi.add_annotation(
+        x=optimal_k,
+        y=optimal_dbi,
+        text=f"Optimal K: {optimal_k}\nDBI: {optimal_dbi:.4f}",
+        showarrow=True,
+        arrowhead=1,
+        ax=0,
+        ay=-30,
     )
 
     # Menampilkan plot
-    st.plotly_chart(fig)
+    st.plotly_chart(fig_dbi)
+
     st.sidebar.subheader("Nilai Jumlah K")
-    clust = st.sidebar.slider("Pilih jumlah kluster:", 2, 10, 3, 1)
+    clust = st.sidebar.slider("Pilih jumlah kluster:", 2, 10, 2, 1)
 
     def k_means(n_clust):
         kmeans = KMeans(n_clusters=n_clust)
@@ -208,30 +254,75 @@ def tahun2021():
     # st.header("Hasil Scaling")
     # st.write(x_train21)
 
-    inertias = []
-    k_range = range(1, 10)
+    # inertias = []
+    k_range = range(2, 11)
+    # for k in k_range:
+    #     km = KMeans(n_clusters=k).fit(x_train21)
+    #     inertias.append(km.inertia_)
+
+    # # Membuat dataframe untuk Plotly
+    # df_elbow = pd.DataFrame({"Number of Clusters": k_range, "Inertia": inertias})
+
+    # # Membuat plot interaktif dengan Plotly
+    # fig = px.line(
+    #     df_elbow,
+    #     x="Number of Clusters",
+    #     y="Inertia",
+    #     markers=True,
+    #     title="Elbow Method For Optimal k",
+    #     labels={"Inertia": "Sum of squared distances (Inertia)"},
+    # )
+
+    # # Menampilkan plot
+    # st.plotly_chart(fig)
+
+    dbi_scores = []
+    optimal_k = None
+    optimal_dbi = float("inf")
+
     for k in k_range:
-        km = KMeans(n_clusters=k).fit(x_train21)
-        inertias.append(km.inertia_)
+        kmeans = KMeans(n_clusters=k)
+        y_cluster21 = kmeans.fit_predict(x_train21)
+        data21["Cluster"] = y_cluster21
+
+        # Menghitung Davies-Bouldin Index
+        dbi = davies_bouldin_score(x_train21, y_cluster21)
+        dbi_scores.append(dbi)
+
+        # Memilih nilai K yang memiliki DBI terendah sebagai optimal
+        if dbi < optimal_dbi:
+            optimal_dbi = dbi
+            optimal_k = k
 
     # Membuat dataframe untuk Plotly
-    df_elbow = pd.DataFrame({"Number of Clusters": k_range, "Inertia": inertias})
+    df_dbi = pd.DataFrame({"Number of Clusters": k_range, "DBI": dbi_scores})
 
     # Membuat plot interaktif dengan Plotly
-    fig = px.line(
-        df_elbow,
+    fig_dbi = px.line(
+        df_dbi,
         x="Number of Clusters",
-        y="Inertia",
+        y="DBI",
         markers=True,
-        title="Elbow Method For Optimal k",
-        labels={"Inertia": "Sum of squared distances (Inertia)"},
+        title="Davies-Bouldin Index For Optimal K",
+        labels={"DBI": "Davies-Bouldin Index"},
+    )
+
+    # Menampilkan nilai K yang optimal di dalam plot
+    fig_dbi.add_annotation(
+        x=optimal_k,
+        y=optimal_dbi,
+        text=f"Optimal K: {optimal_k}\nDBI: {optimal_dbi:.4f}",
+        showarrow=True,
+        arrowhead=1,
+        ax=0,
+        ay=-30,
     )
 
     # Menampilkan plot
-    st.plotly_chart(fig)
+    st.plotly_chart(fig_dbi)
 
     st.sidebar.subheader("Nilai Jumlah K")
-    clust = st.sidebar.slider("Pilih jumlah kluster:", 2, 10, 3, 1)
+    clust = st.sidebar.slider("Pilih jumlah kluster:", 2, 10, 2, 1)
 
     def k_means(n_clust):
         kmeans = KMeans(n_clusters=n_clust)
