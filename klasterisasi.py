@@ -53,6 +53,27 @@ def intro():
         """,
         unsafe_allow_html=True,
     )
+    footer()
+
+
+def footer():
+    st.markdown(
+        """
+        <style>
+            .footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+            }
+        </style>
+        <div class="footer">
+            <p>Created with <span style="color:red;">❤️</span> by Gilang Satria Putra Ramadhan</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 def tahun2022():
@@ -229,6 +250,7 @@ def tahun2022():
 
         st.plotly_chart(fig_bar)
 
+    footer()
     k_means(clust)
 
 
@@ -420,6 +442,7 @@ def tahun2021():
 
         # st.plotly_chart(fig_bar)
 
+    footer()
     k_means(clust)
 
 
@@ -577,6 +600,7 @@ def prediksi():
 
     # Pilihan jumlah kluster
     clust = st.slider("Pilih jumlah kluster:", 2, 10, 2, 1, key="kluster")
+    footer()
 
     # Button untuk melakukan prediksi
     if st.button("Prediksi Klaster"):
@@ -594,7 +618,8 @@ def prediksi():
 
         # Menampilkan scatter plot
         show_scatter_plot(dataset, predicted_cluster, input_data, nama_provinsi, clust)
-        # barplot_prediksi(clust, df_plotly, input_data, predicted_cluster)
+
+    # barplot_prediksi(clust, df_plotly, input_data, predicted_cluster)
     # st.header("Prediksi Klaster")
 
     # # Pilih tahun untuk prediksi
