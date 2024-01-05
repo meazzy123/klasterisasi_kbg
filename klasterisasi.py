@@ -125,7 +125,7 @@ def tahun2022():
     optimal_dbi = float("inf")
 
     for k in k_range:
-        kmeans = KMeans(n_clusters=k)
+        kmeans = KMeans(n_clusters=k, random_state=42)
         y_cluster22 = kmeans.fit_predict(x_train22)
         data22["Cluster"] = y_cluster22
 
@@ -303,7 +303,7 @@ def tahun2021():
     optimal_dbi = float("inf")
 
     for k in k_range:
-        kmeans = KMeans(n_clusters=k)
+        kmeans = KMeans(n_clusters=k, random_state=42)
         y_cluster21 = kmeans.fit_predict(x_train21)
         data21["Cluster"] = y_cluster21
 
