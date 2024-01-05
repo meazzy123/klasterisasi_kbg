@@ -576,7 +576,7 @@ def prediksi():
     badilag = st.number_input("Jumlah KBG Perempuan dari Badilag:", 0)
 
     # Pilihan jumlah kluster
-    clust = st.slider("Pilih jumlah kluster:", 2, 10, 3, 1, key="kluster")
+    clust = st.slider("Pilih jumlah kluster:", 2, 10, 2, 1, key="kluster")
 
     # Button untuk melakukan prediksi
     if st.button("Prediksi Klaster"):
