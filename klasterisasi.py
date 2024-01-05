@@ -389,7 +389,7 @@ def show_scatter_plot(dataset, predicted_cluster, input_data, nama_provinsi, clu
     # Menambahkan titik prediksi ke dalam plot
     fig.add_trace(
         go.Scatter(
-            x=[input_data[0]],
+            x=[sum(input_data)],
             y=[nama_provinsi],
             mode="markers",
             marker=dict(color="red"),
